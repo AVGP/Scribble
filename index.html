@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <title>Scribble</title>
+        <link rel="stylesheet" href="css/main.css" type="text/css"/>
+    </head>
+    <body>
+        <nav class="visible">
+            <button id="new">New</button>
+            <button id="open">Open</button>
+            <button id="save">Save</button>
+            <button id="preview">Preview</button>
+            <button id="mode" class="on">&#128161; Toggle dark mode</button>
+        </nav>
+        <textarea id="content"></textarea>
+        <div id="rendered"></div>
+        
+        <script src="js/showdown.js"></script>
+        <script src="js/app.js"></script>
+
+    </body>
+</html>
