@@ -16,3 +16,25 @@ body, html {
   background: transparent;
   color: inherit;
 }
+
+nav {
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 26px;
+  background: #ededed;
+}
+
+nav button {
+  display: inline-block;
+  height: 24px;
+}
+
+.dark nav {
+  background: #444;
+}
+
+#content, #rendered {
+  margin-top: 28px;
+}
