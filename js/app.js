@@ -5,7 +5,7 @@ var App = (function(md) {
   }
 
   var handleLightEvent = function(event) {
-    if(event.value < 50) {
+    if(event.value < 5) {
       document.body.classList.add("dark");
     } else {
       document.body.classList.remove("dark");
