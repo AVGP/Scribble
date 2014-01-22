@@ -4,6 +4,16 @@ var App = (function(md) {
     document.body.classList.add("dark");
   }
 
+  var handleLightEvent = function(event) {
+    if(event.value < 50) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  };
+
+  window.addEventListener("devicelight", handleLightEvent);
+
   var content  = document.getElementById("content"),
          preview = document.getElementById("rendered");
          
@@ -41,6 +51,7 @@ var App = (function(md) {
    
    document.getElementById("mode").addEventListener("click", function() {
      document.body.classList.toggle("dark");
+     window.removeEventListener("devicelight", handleLightEvent);
      localStorage.setItem("__author_darkmode", 
        !(localStorage.getItem("__author_darkmode") == "true"));
    });
