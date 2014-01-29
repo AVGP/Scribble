@@ -24,3 +24,7 @@ The icon also works offline.
 
 ## Firefox 
 To come soon. 
+
+## Attributions
+
+The app icon by [PC.de](http://pc.de/ico/). The icon is licensed under the CC-BY-SA 3.0 license.
