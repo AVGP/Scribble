@@ -1,7 +1,9 @@
 CACHE MANIFEST
-#VERSION 2
+#VERSION 3
 index.html
 icons/
 js/app.js
 js/showdown.js
+js/storage.js
+js/remotestorage.min.js
 css/main.css
