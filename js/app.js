@@ -1,5 +1,7 @@
 var App = (function(md) {
 
+  remoteStorage.displayWidget();
+
   if(localStorage.getItem("__author_darkmode") == "true") {
     document.body.classList.add("dark");
   }
@@ -23,13 +25,19 @@ var App = (function(md) {
    var isPreviewing = false;
    
    var loadFile = function(fName) {
-     var text= localStorage.getItem(fName);
-     
-     content.value = text;
+    remoteStorage.scribbles.loadScribble(fName).then(function(scribble) {
+      if(!scribble) {
+        var text= localStorage.getItem(fName);
+        content.value = text;
+        return;
+      }
+      
+      content.value = scribble.content;
+    })
    };
    
    var saveFile = function(fileName, content) {
-     localStorage.setItem(fileName, content);
+     remoteStorage.scribbles.saveScribble(fileName, content);
    };
    
    document.getElementById("save").addEventListener("click", function() {
