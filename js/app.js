@@ -1,8 +1,20 @@
 var App = (function(md) {
 
+  remoteStorage.displayWidget();
+
   if(localStorage.getItem("__author_darkmode") == "true") {
     document.body.classList.add("dark");
   }
+
+  var handleLightEvent = function(event) {
+    if(event.value < 5) {
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.remove("dark");
+    }
+  };
+
+  window.addEventListener("devicelight", handleLightEvent);
 
   var content  = document.getElementById("content"),
          preview = document.getElementById("rendered");
@@ -13,13 +25,19 @@ var App = (function(md) {
    var isPreviewing = false;
    
    var loadFile = function(fName) {
-     var text= localStorage.getItem(fName);
-     
-     content.value = text;
+    remoteStorage.scribbles.loadScribble(fName).then(function(scribble) {
+      if(!scribble) {
+        var text= localStorage.getItem(fName);
+        content.value = text;
+        return;
+      }
+      
+      content.value = scribble.content;
+    })
    };
    
    var saveFile = function(fileName, content) {
-     localStorage.setItem(fileName, content);
+     remoteStorage.scribbles.saveScribble(fileName, content);
    };
    
    document.getElementById("save").addEventListener("click", function() {
@@ -41,6 +59,7 @@ var App = (function(md) {
    
    document.getElementById("mode").addEventListener("click", function() {
      document.body.classList.toggle("dark");
+     window.removeEventListener("devicelight", handleLightEvent);
      localStorage.setItem("__author_darkmode", 
        !(localStorage.getItem("__author_darkmode") == "true"));
    });
